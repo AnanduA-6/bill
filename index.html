@@ -27,6 +27,18 @@
         .hidden {
             display: none;
         }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        .button-group button {
+            width: 48%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -35,50 +47,56 @@
         <div id="nameGroup" class="form-group">
             <label for="name">Name:</label>
             <input type="text" id="name" placeholder="Enter your First Name">
+            <div class="button-group">
+                <button id="nameBtn">Next</button>
+            </div>
         </div>
         <div id="ageGroup" class="form-group hidden">
             <label for="age">Age:</label>
             <input type="number" id="age" placeholder="Enter your age">
+            <div class="button-group">
+                <button id="ageBtn">Previous</button>
+                <button id="ageNextBtn">Next</button>
+            </div>
         </div>
         <div id="heightGroup" class="form-group hidden">
             <label for="height">Height (cm):</label>
             <input type="number" id="height" placeholder="Enter your height">
+            <div class="button-group">
+                <button id="heightBtn">Previous</button>
+                <button id="submitBtn">Submit</button>
+            </div>
         </div>
-        <button id="submitBtn" class="hidden">Submit</button>
     </div>
 
     <script>
-        const nameInput = document.getElementById('name');
-        const ageInput = document.getElementById('age');
-        const heightInput = document.getElementById('height');
+        const nameGroup = document.getElementById('nameGroup');
+        const ageGroup = document.getElementById('ageGroup');
+        const heightGroup = document.getElementById('heightGroup');
+        const nameBtn = document.getElementById('nameBtn');
+        const ageBtn = document.getElementById('ageBtn');
+        const ageNextBtn = document.getElementById('ageNextBtn');
+        const heightBtn = document.getElementById('heightBtn');
         const submitBtn = document.getElementById('submitBtn');
 
-        nameInput.addEventListener('change', function () {
-            if (nameInput.value.trim() !== '' && (nameInput.value.toLowerCase() === 'amrutha')) {
-                document.getElementById('nameGroup').classList.add('hidden');
-                document.getElementById('ageGroup').classList.remove('hidden');
-            } else {
-                alert('Please enter your name correctly.....!')
-            }
+        nameBtn.addEventListener('click', function () {
+            nameGroup.classList.add('hidden');
+            ageGroup.classList.remove('hidden');
         });
 
-        ageInput.addEventListener('change', function () {
-            if (ageInput.value.trim() !== '' && (ageInput.value == 23)) {
-                document.getElementById('ageGroup').classList.add('hidden');
-                document.getElementById('heightGroup').classList.remove('hidden');
-            } else {
-                alert('Please enter your age correctly.....!')
-            }
+        ageBtn.addEventListener('click', function () {
+            ageGroup.classList.add('hidden');
+            nameGroup.classList.remove('hidden');
         });
 
-        heightInput.addEventListener('change', function () {
-            if (heightInput.value.trim() !== '' && (heightInput.value < 165)) {
-                alert('Hihihi you are shortt...!')
-                document.getElementById('heightGroup').classList.add('hidden');
-                submitBtn.classList.remove('hidden');
-            } else {
-                alert("C'mon be honest...! Enter your actual height..!")
-            }
+        ageNextBtn.addEventListener('click', function () {
+            ageGroup.classList.add('hidden');
+            heightGroup.classList.remove('hidden');
+        });
+
+        heightBtn.addEventListener('click', function () {
+            heightGroup.classList.add('hidden');
+            ageGroup.classList.remove('hidden');
         });
 
         submitBtn.addEventListener('click', function () {
@@ -90,7 +108,6 @@
             alert('JK(Just kidding...)')
             alert('HIHIHIHI')
             window.location.href = 'index2.html';
-
         });
     </script>
 </body>
